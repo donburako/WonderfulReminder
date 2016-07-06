@@ -20,6 +20,6 @@ public class EditTask {
 
     // Taskの追加
     private void edit(Task before, Task after){
-        db.execSQL(/*ここで操作*/);
+        //db.execSQL(/*ここで操作*/);
     }
 }

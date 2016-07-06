@@ -32,7 +32,7 @@
         android:text="@string/button_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addButton"
+        android:id="@+id/mainAddButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
