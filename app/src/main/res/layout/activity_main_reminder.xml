@@ -9,78 +9,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.reminder.jetpudding.wonderfulreminder.MainReminderActivity">
     <TextView
-        android:text="タスク名"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp"
-        android:id="@+id/textView"
-        android:textSize="20sp" />
+        android:text="@string/textview_tasklist"
+        android:id="@+id/textview_tasklist"
+        android:textSize="24sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView"
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textview_tasklist"
+        android:layout_marginTop="25dp"
+        android:id="@+id/listview_tasklist"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/taskName"
-        android:layout_toRightOf="@+id/deleteButton"
-        android:layout_toEndOf="@+id/deleteButton" />
-
-    <TextView
-        android:text="終了時刻"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/startTime"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20sp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:layout_below="@+id/startTime"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/endTime"
-        android:layout_alignLeft="@+id/taskName"
-        android:layout_alignStart="@+id/taskName" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/startTime"
-        android:layout_below="@+id/taskName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="開始時刻"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/taskName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20sp" />
+        android:layout_above="@+id/addButton"
+        android:background="@android:color/white"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="false" />
 
     <Button
-        android:text="追加"
-        android:layout_width="wrap_content"
+        android:text="@string/button_add"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/addButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="23dp"
-        android:id="@+id/addButton" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

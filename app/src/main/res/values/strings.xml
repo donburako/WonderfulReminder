@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WonderfulReminder</string>
+    <string name="textview_taskname">タスク名</string>
+    <string name="textview_endtime">終了時刻</string>
+    <string name="textview_starttime">開始時刻</string>
+    <string name="textview_detail">詳細</string>
+    <string name="button_add">追加</string>
+    <string name="textview_tasklist">予定一覧</string>
+    <string name="textview_addtask">予定を追加</string>
 </resources>
