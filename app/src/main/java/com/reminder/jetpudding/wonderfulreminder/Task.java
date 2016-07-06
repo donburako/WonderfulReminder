@@ -1,5 +1,6 @@
 package com.reminder.jetpudding.wonderfulreminder;
-import java.util.Date;
+import java.util.*;
+
 /**
  * Created by mbpusr on 2016/07/01.
  */
@@ -52,5 +53,11 @@ public class Task {
         this.detail = detail;
     }
 
+    public static List<Task> getAllTasks(){
+        List<Task> allTasks = new ArrayList<Task>();
+        // 全てのTaskを読み込んでリストにして返す
+        // ******[未実装]*****
+        return allTasks; // 仮
+    }
 }
 

@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.*;
 
 public class TaskManager extends AppCompatActivity{
-    List<TaskSet> taskSetList;
+    List<Task> taskList;
+    Alarm alarm;
     AddTask addtask;
     DeleteTask deletetask;
     EditTask edittask;
@@ -15,30 +16,36 @@ public class TaskManager extends AppCompatActivity{
         init();
     }
 
+    // TaskListにアラーム鳴らすやつがあるかチェック
+    // *****[未修整]******
     public void checkAlarm(){
-	Date currentDate;
+	    Date currentDate;
 	
     }
     public void AddExecute(){
-	addtask.AddTask(taskSetList);
+	addtask.AddTask(taskList);
     }
     public void DeleteExecute(){
-	deletetask.DeleteTask(taskSetList);
+	deletetask.DeleteTask(taskList);
     }
     public void EditExecute(){
 	edittask.EditTask();
     }
+    // *******************
 
     //初期化
     private void init(){
         //taskSet初期化
-        taskSetList=TaskSet.getAllTaskSet();
+        taskList=Task.getAllTasks();
 
-        //databaseの初期化と接続(現時点ではコンストラクタ未作成のためエラー発生中)
-        TaskDB db=new TaskDB();
+        //databaseの初期化と接続
+        TaskDB db=new TaskDB(this);
         addtask=new AddTask(db);
         deletetask=new DeleteTask(db);
         edittask=new EditTask(db);
+
+        // Alarm
+        alarm = new Alarm();
 
         //画面遷移
     }

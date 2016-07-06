@@ -1,5 +1,9 @@
 package com.reminder.jetpudding.wonderfulreminder;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import java.util.*;
 
 /**
@@ -7,11 +11,22 @@ import java.util.*;
  */
 
 public class AddTask {
-    TaskDB db;
-    public AddTask(TaskDB db){
-        this.db=db;
+    private SQLiteDatabase db;
+    private final String TABLE_NAME = "WR_DB";
+
+    // コンストラクタ
+    public AddTask(TaskDB taskdb){
+        this.db = taskdb.getWritableDatabase();
     }
+
+    // TaskManagerからの呼び出し
     public void execute(Task task){
-        db.add(task);
+        add(task);
+    }
+
+    // Taskの追加
+    private void add(Task task){
+        ContentValues values = new ContentValues();
+        values.put("TASK", task.toByteArray());
     }
 }
