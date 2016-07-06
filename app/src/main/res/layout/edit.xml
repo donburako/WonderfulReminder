@@ -19,8 +19,8 @@
         android:id="@+id/changeButton"
         android:layout_alignBaseline="@+id/deleteButton"
         android:layout_alignBottom="@+id/deleteButton"
-        android:layout_alignLeft="@+id/endTime"
-        android:layout_alignStart="@+id/endTime"
+        android:layout_alignLeft="@+id/endtime"
+        android:layout_alignStart="@+id/endtime"
         android:layout_marginLeft="61dp"
         android:layout_marginStart="61dp" />
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
-        android:layout_below="@+id/endTime"
+        android:layout_below="@+id/endtime"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp" />
@@ -39,10 +39,10 @@
         android:layout_height="wrap_content"
         android:inputType="time"
         android:ems="10"
-        android:id="@+id/endTime"
-        android:layout_below="@+id/taskName"
-        android:layout_alignLeft="@+id/taskName"
-        android:layout_alignStart="@+id/taskName"
+        android:id="@+id/endtime"
+        android:layout_below="@+id/taskname"
+        android:layout_alignLeft="@+id/taskname"
+        android:layout_alignStart="@+id/taskname"
         android:hint="終了時刻を入力" />
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        android:layout_below="@+id/taskName"
+        android:layout_below="@+id/taskname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp" />
@@ -60,10 +60,10 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_below="@+id/endTime"
+        android:layout_below="@+id/endtime"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/editText3"
+        android:id="@+id/detail"
         android:hint="詳細を入力" />
 
     <EditText
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/taskName"
+        android:id="@+id/taskname"
         android:layout_alignTop="@+id/textView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

@@ -15,11 +15,11 @@ public class EditTask {
     }
 
     // TaskManagerからの呼び出し
-   // public void execute(Task before, Task after){ edit(before, after);
-   // }
+    public void execute(Task before, Task after){ edit(before, after);
+    }
 
     // Taskの追加
-    //private void edit(Task before, Task after){
-       // db.execSQL(/*ここで操作*/);
-    //}
+    private void edit(Task before, Task after){
+        db.execSQL(/*ここで操作*/);
+    }
 }
