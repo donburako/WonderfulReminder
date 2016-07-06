@@ -13,6 +13,7 @@ public class TaskManager extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         init();
     }
 
@@ -22,15 +23,9 @@ public class TaskManager extends AppCompatActivity{
 	    Date currentDate;
 	
     }
-    public void AddExecute(){
-	addtask.AddTask(taskList);
-    }
-    public void DeleteExecute(){
-	deletetask.DeleteTask(taskList);
-    }
-    public void EditExecute(){
-	edittask.EditTask();
-    }
+    //public void AddExecute(){ addtask.execute(); }
+    //public void DeleteExecute(){ deletetask.DeleteTask(taskList); }
+    //public void EditExecute(){ edittask.EditTask(); }
     // *******************
 
     //初期化

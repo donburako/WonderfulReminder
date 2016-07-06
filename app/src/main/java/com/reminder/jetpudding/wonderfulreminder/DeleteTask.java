@@ -16,11 +16,11 @@ public class DeleteTask {
 
     // TaskManagerからの呼び出し
     public void execute(Task task){
-        delete(task);
+        //delete(task);
     }
 
     // Taskの追加
-    private void delete(Task task){
-        db.execSQL(/*ここで操作*/);
-    }
+    //private void delete(Task task){
+    //    db.execSQL(/*ここで操作*/);
+    //}
 }
