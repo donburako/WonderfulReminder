@@ -32,7 +32,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="63dp"
-        android:id="@+id/button" />
+        android:id="@+id/OkButton" />
 
     <TextView
         android:text="@string/textview_addtask"
