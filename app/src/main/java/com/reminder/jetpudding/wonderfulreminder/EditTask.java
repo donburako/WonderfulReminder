@@ -7,11 +7,19 @@ import java.util.*;
 import android.database.sqlite.SQLiteDatabase;
 
 public class EditTask {
-    TaskDB db;
-     public EditTask(TaskDB db){
-        this.db=db;
+    SQLiteDatabase db;
+
+    // コンストラクタ
+    public EditTask(TaskDB taskdb){
+        this.db = taskdb.getWritableDatabase();
     }
-    public void execute(Task before,Task after){
-        db.edit(before,after);
+
+    // TaskManagerからの呼び出し
+    public void execute(Task before, Task after){ edit(before, after);
+    }
+
+    // Taskの追加
+    private void edit(Task before, Task after){
+        //db.execSQL(/*ここで操作*/);
     }
 }

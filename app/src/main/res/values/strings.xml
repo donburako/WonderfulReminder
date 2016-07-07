@@ -1,10 +1,3 @@
 <resources>
     <string name="app_name">WonderfulReminder</string>
-    <string name="task_name_title">タスク名</string>
-    <string name="add">追加</string>
-    <string name="delete">削除</string>
-    <string name="end_time_title">終了時刻</string>
-    <string name="detail_title">詳細</string>
-    <string name="decide">決定</string>
-    <string name="change"></string>
 </resources>

@@ -7,13 +7,20 @@ import java.util.*;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DeleteTask {
+    SQLiteDatabase db;
 
-    TaskDB db;
-
-    public DeleteTask(TaskDB db){
-        this.db=db;
+    // コンストラクタ
+    public DeleteTask(TaskDB taskdb){
+        this.db = taskdb.getWritableDatabase();
     }
+
+    // TaskManagerからの呼び出し
     public void execute(Task task){
-        db.delete(task);
+        //delete(task);
     }
+
+    // Taskの追加
+    //private void delete(Task task){
+    //    db.execSQL(/*ここで操作*/);
+    //}
 }

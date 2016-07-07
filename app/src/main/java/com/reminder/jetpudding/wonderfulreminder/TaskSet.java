@@ -1,6 +1,14 @@
 package com.reminder.jetpudding.wonderfulreminder;
 import java.util.*;
 
+//////////////////////////
+// TaskSet
+// ----------------
+// TaskとAlarmの関連付け用
+// [7/5] 現在未使用
+//////////////////////////
+
+/*
 public class TaskSet{
     private Task task;
     //boolean isRing;
@@ -22,3 +30,4 @@ public class TaskSet{
     }
 
 }
+*/
