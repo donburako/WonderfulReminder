@@ -1,4 +1,9 @@
 package com.reminder.jetpudding.wonderfulreminder;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteCursor;
+
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.util.*;
 
 /**
@@ -18,7 +23,6 @@ public class Task {
         this.taskname=taskname;
         this.endtime = endtime;
         this.detail=detail;
-
     }
 
     public int getNumber(){
@@ -53,11 +57,31 @@ public class Task {
         this.detail = detail;
     }
 
-    public static List<Task> getAllTasks(){
-        List<Task> allTasks = new ArrayList<Task>();
-        // 全てのTaskを読み込んでリストにして返す
-        // ******[未実装]*****
-        return allTasks; // 仮
+    // 全てのtaskを読み込んでリストにして返す
+    public static List<Task> getAllTasks(TaskDB taskdb){
+        List<Task> allTasks = new ArrayList<Task>(); // 全てのtaskを入れるList
+
+        try{
+            // SQL文の実行、それをCursorに格納
+            SQLiteCursor c = (SQLiteCursor) taskdb.getWritableDatabase().rawQuery
+                    ("SELECT * FROM WR_DB;", null);
+
+            // cからデータを抽出してTaskにキャスト
+            ObjectInputStream ois; // byte[]をTaskへキャストするための…
+            c.moveToFirst(); // 最初のデータの行へカーソルを移動
+            for(int i = 0; i<c.getCount(); i++){
+                ois = new ObjectInputStream(new ByteArrayInputStream(c.getBlob(1)));
+                allTasks.add((Task) ois.readObject());
+                c.moveToNext();
+            }
+
+        }catch(java.io.IOException e){ e.printStackTrace();
+        }catch(java.lang.ClassNotFoundException e){ e.printStackTrace();
+        }catch(SQLException e){ e.printStackTrace();
+
+        }
+
+        return allTasks;
     }
 }
 
