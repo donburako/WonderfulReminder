@@ -71,7 +71,7 @@ public class Task {
             c.moveToFirst(); // 最初のデータの行へカーソルを移動
             for(int i = 0; i<c.getCount(); i++){
                 ois = new ObjectInputStream(new ByteArrayInputStream(c.getBlob(1)));
-                allTasks.add((Task) ois.readObject());
+                allTasks.add((Task) ois.readObject()); ois.close();
                 c.moveToNext();
             }
 
