@@ -8,6 +8,7 @@ public class Alarm {
     private MediaPlayer mp;
 
     public void ring(){
+
      //  mp = MediaPlayer.create(this, R.raw.test);
         // resのrawディレクトリにtest.mp3を置いた場合(今はまだファイルもフォルダもないのでエラー状態)
         mp.start();
