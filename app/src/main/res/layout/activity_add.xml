@@ -7,23 +7,21 @@ android:layout_width="match_parent" android:layout_height="match_parent">
     android:text="詳細"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/endtime"
-    android:layout_alignRight="@+id/textView3"
-    android:layout_alignEnd="@+id/textView3"
     android:id="@+id/textView6"
+    android:textSize="20sp"
+    android:layout_alignTop="@+id/detail"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:textSize="20sp" />
+    android:layout_alignParentStart="true" />
 
 <TextView
     android:text="終了時刻"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/textView3"
-    android:layout_below="@+id/taskname"
+    android:textSize="20sp"
+    android:layout_above="@+id/datePicker1"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:textSize="20sp" />
+    android:layout_alignParentStart="true" />
 
 <Button
     android:text="決定"
@@ -77,7 +75,7 @@ android:layout_width="match_parent" android:layout_height="match_parent">
     android:id="@+id/detail"
     android:hint="詳細を入力"
     android:singleLine="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/taskname"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -88,7 +86,7 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:calendarViewShown="false"
         android:spinnersShown="true"
         android:datePickerMode="spinner"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/OkButton"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

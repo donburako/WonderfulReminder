@@ -31,7 +31,7 @@ public class TaskManager extends AppCompatActivity{
     //初期化
     private void init(){
         //taskSet初期化
-        taskList=Task.getAllTasks();
+        //taskList=Task.getAllTasks();
 
         //databaseの初期化と接続
         TaskDB db=new TaskDB(this);
