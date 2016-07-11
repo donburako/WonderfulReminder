@@ -15,6 +15,9 @@ public class AddActivity extends AppCompatActivity {
     EditText TaskName=(EditText)findViewById(R.id.taskname);
     EditText Detail=(EditText)findViewById(R.id.detail);
     DatePicker EndTime=(DatePicker)findViewById(R.id.datePicker1);
+    String taskName=TaskName.getText().toString();
+    Date endTime=EndTime.getValue();
+
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,7 @@ public class AddActivity extends AppCompatActivity {
 
 
     public void toOK(View view){
-       Task task=Task(1,TaskName,EndTime,Detail);
+       Task task=Task(1,taskName,endTime,Detail);
        finish();
     }
 }
