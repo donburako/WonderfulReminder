@@ -10,57 +10,26 @@ android:layout_width="match_parent" android:layout_height="match_parent">
     android:id="@+id/deleteButton"
     android:layout_alignParentBottom="true"
     android:layout_toRightOf="@+id/textView4"
-    android:layout_toEndOf="@+id/textView4" />
+    android:layout_toEndOf="@+id/textView4"
+    android:onClick="toDelete" />
 
-<Button
-    android:text="反映"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/changeButton"
-    android:layout_alignBaseline="@+id/deleteButton"
-    android:layout_alignBottom="@+id/deleteButton"
-    android:layout_alignLeft="@+id/endtime"
-    android:layout_alignStart="@+id/endtime"
-    android:layout_marginLeft="61dp"
-    android:layout_marginStart="61dp" />
-
-<TextView
+    <TextView
     android:text="詳細"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/textView5"
-    android:layout_below="@+id/endtime"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:textSize="20sp" />
-
-<EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:inputType="time"
-    android:ems="10"
-    android:id="@+id/endtime"
-    android:layout_below="@+id/taskname"
-    android:layout_alignLeft="@+id/taskname"
-    android:layout_alignStart="@+id/taskname"
-    android:hint="終了時刻を入力" />
-
-<TextView
-    android:text="終了時刻"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView4"
     android:layout_below="@+id/taskname"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
     android:textSize="20sp" />
 
-<EditText
+
+    <EditText
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:inputType="textPersonName"
     android:ems="10"
-    android:layout_below="@+id/endtime"
+    android:layout_below="@+id/taskname"
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true"
     android:id="@+id/detail"
@@ -87,5 +56,39 @@ android:layout_width="match_parent" android:layout_height="match_parent">
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
     android:textSize="20sp" />
+
+    <Button
+        android:text="反映"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/changeButton"
+        android:layout_marginLeft="61dp"
+        android:layout_marginStart="61dp"
+        android:layout_alignBaseline="@+id/deleteButton"
+        android:layout_alignBottom="@+id/deleteButton"
+        android:layout_alignLeft="@+id/detail"
+        android:layout_alignStart="@+id/detail"
+        android:onClick="change" />
+
+    <TextView
+        android:text="終了時刻"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="20sp"
+        android:layout_below="@+id/detail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:spinnersShown="true"
+        android:datePickerMode="spinner"
+        android:layout_below="@+id/detail"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
