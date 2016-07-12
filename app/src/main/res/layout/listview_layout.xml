@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="match_parent">
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskNameText"
+        android:textSize="30dp"
+        android:text="nothing"
+        android:layout_alignBaseline="@+id/toDeleteButton">
+    </TextView>
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toDeleteButton"
+        android:text="@string/button_delete"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+    </Button>
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toEditButton"
+        android:text="@string/button_edit"
+        android:layout_alignBaseline="@+id/toDeleteButton"
+        android:layout_alignBottom="@+id/toDeleteButton"
+        android:layout_toLeftOf="@+id/toDeleteButton"
+        android:layout_toStartOf="@+id/toDeleteButton">
+    </Button>
+</RelativeLayout>

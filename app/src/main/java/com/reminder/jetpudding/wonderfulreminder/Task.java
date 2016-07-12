@@ -6,12 +6,13 @@ import android.widget.EditText;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by mbpusr on 2016/07/01.
  */
-public class Task {
+public class Task implements Serializable{
     private int num;
 
     private String taskname;
@@ -66,8 +67,7 @@ public class Task {
 
         try{
             // SQL文の実行、それをCursorに格納
-            SQLiteCursor c = (SQLiteCursor) taskdb.getWritableDatabase().rawQuery
-                    ("SELECT * FROM WR_DB;", null);
+            SQLiteCursor c = (SQLiteCursor) taskdb.getWritableDatabase().rawQuery("SELECT * FROM WR_DB;", null);
 
             // cからデータを抽出してTaskにキャスト
             ObjectInputStream ois; // byte[]をTaskへキャストするための…

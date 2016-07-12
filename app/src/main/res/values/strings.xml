@@ -12,4 +12,6 @@
         <item>5分ごと</item>
         <item>10分ごと</item>
     </string-array>
+    <string name="button_edit">編集</string>
+    <string name="button_delete">削除</string>
 </resources>

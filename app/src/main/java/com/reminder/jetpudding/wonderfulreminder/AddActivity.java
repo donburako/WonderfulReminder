@@ -1,5 +1,6 @@
 package com.reminder.jetpudding.wonderfulreminder;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
@@ -44,11 +45,37 @@ public class AddActivity extends AppCompatActivity {
         // Task作成
         Task task= new Task(TaskManager.getTaskListSize(),taskName,endCal.getTime(),detail);
 
+        // ** debug **
+        makeDialog("AddTask", "Task: name="+taskName+" detail="+detail+" time="+endTime.getYear()+"/"+endTime.getMonth()+"/"+endTime.getDayOfMonth());
+
         // TaskAdd
         TaskManager.addExecute(task);
 
         // Main画面に戻ろう
         Intent intent = new Intent(AddActivity.this, MainReminderActivity.class);
         startActivity(intent);
+
+    }
+
+    public void makeDialog(String title, String msg) {
+        // 確認ダイアログの作成
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddActivity.this);
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(msg);
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // OKのとき
+            }
+        });
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // NOのとき
+                Intent intent = new Intent(AddActivity.this, MainReminderActivity.class);
+                startActivity(intent);
+            }
+        });
+        alertDialog.create().show();
     }
 }
