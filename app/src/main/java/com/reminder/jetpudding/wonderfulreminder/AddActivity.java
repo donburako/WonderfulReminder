@@ -18,20 +18,33 @@ public class AddActivity extends AppCompatActivity {
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_add); // レイアウトを適用
+         TaskManager.setAdAct(this); // TaskManagerと連結
     }
 
 
     public void toOK(View view){
-        EditText TaskName=(EditText)findViewById(R.id.taskname);
-        EditText Detail=(EditText)findViewById(R.id.detail);
-        DatePicker EndTime=(DatePicker)findViewById(R.id.datePicker1);
-        String taskName=TaskName.getText().toString();
-        long loendTime=EndTime.getYear()+EndTime.getMonth()+EndTime.getDayOfMonth();//まだ年と月と日しかとれていない
-        Date enddate = new Date(loendTime);
-        String detail=Detail.getText().toString();
-       Task task= new Task(1,taskName,enddate,detail);
-        //AddTask addtask=new Anew AddTask.execute(task);*/
-       finish();
+        // 入力値の取得
+        EditText taskNameText=(EditText)findViewById(R.id.taskname);
+        EditText detailText=(EditText)findViewById(R.id.detail);
+        DatePicker endTime=(DatePicker)findViewById(R.id.datePicker1);
+
+        // タスク名取得
+        String taskName=taskNameText.getText().toString();
+        // 詳細取得
+        String detail=detailText.getText().toString();
+        // 時間を取得→Calendarで指定
+        Calendar endCal = Calendar.getInstance();
+        endCal.set(endTime.getYear(), endTime.getMonth(), endTime.getDayOfMonth());
+
+        // Task作成
+        Task task= new Task(TaskManager.getTaskListSize(),taskName,endCal.getTime(),detail);
+
+        // TaskAdd
+        TaskManager.addExecute(task);
+
+        // Main画面に戻ろう
+        Intent intent = new Intent(AddActivity.this, MainReminderActivity.class);
+        startActivity(intent);
     }
 }

@@ -7,13 +7,11 @@ import android.widget.Button;
 import android.view.View;
 
 public class MainReminderActivity extends AppCompatActivity {
-    Intent intent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_reminder);
-
+        setContentView(R.layout.activity_main_reminder); // 描画するレイアウトの指定(画面に表示する命令ではないことに注意)
+        TaskManager.setMrAct(this); // taskManagerと連結
     }
 
     public void toAddTaskActivity(View view){
