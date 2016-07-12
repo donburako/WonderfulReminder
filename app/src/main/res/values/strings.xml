@@ -7,4 +7,9 @@
     <string name="button_add">追加</string>
     <string name="textview_tasklist">予定一覧</string>
     <string name="textview_addtask">予定を追加</string>
+    <string-array name="snoozelist">
+        <item>切</item>
+        <item>5分ごと</item>
+        <item>10分ごと</item>
+    </string-array>
 </resources>
