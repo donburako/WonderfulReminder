@@ -4,9 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
 import android.content.*;
-import android.widget.DatePicker;
-import android.widget.EditText;
-
+import android.widget.*;
 import java.util.*;
 import com.reminder.jetpudding.wonderfulreminder.R.id.*;
 
@@ -19,6 +17,11 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+         //スヌーズの実装の際に必要
+         Spinner spinner=(Spinner)findViewById(R.id.spinner);
+         int idx=spinner.getSelectedItemPosition();
+         String snoozeItem=(String)spinner.getSelectedItem();
     }
 
 

@@ -23,7 +23,7 @@ public class TaskManager extends AppCompatActivity{
 	    Date currentDate;
 	
     }
-    //public void AddExecute(){ addtask.execute(); }
+    //public void AddExecute(){ addtask.execute(task); }
     //public void DeleteExecute(){ deletetask.DeleteTask(taskList); }
     //public void EditExecute(){ edittask.EditTask(); }
     // *******************
