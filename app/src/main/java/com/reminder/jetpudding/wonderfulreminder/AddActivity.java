@@ -33,6 +33,7 @@ public class AddActivity extends AppCompatActivity {
         String taskName=taskNameText.getText().toString();
         // 詳細取得
         String detail=detailText.getText().toString();
+
         // 時間を取得→Calendarで指定
         Calendar endCal = Calendar.getInstance();
         endCal.set(endTime.getYear(), endTime.getMonth(), endTime.getDayOfMonth());

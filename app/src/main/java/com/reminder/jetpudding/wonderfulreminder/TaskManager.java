@@ -24,7 +24,7 @@ public class TaskManager extends AppCompatActivity{
     private static EditActivity ediAct;
 
     /*---[ SETTER ]---*/
-    public static void setTaskList(List<Task> tl){ taskList = tl; }
+    public static void setTaskList(List<Task> tl){ taskList = (ArrayList<Task>) tl; }
     public static void setAddtask(AddTask at){ addtask = at; }
     public static void setEdittask(EditTask et){ edittask = et; }
     public static void setDeletetask(DeleteTask dt){ deletetask = dt; }
@@ -34,7 +34,14 @@ public class TaskManager extends AppCompatActivity{
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
 
     /*---[ GETTER ]---*/
+    // taskの数
     public static int getTaskListSize(){ return taskList.size(); }
+    // tasknameのリスト
+    public static List<String> getTaskNames(){
+        List<String> taskNames = new ArrayList<>();
+        for(Task t:taskList){ taskNames.add(t.getTaskName()); }
+        return taskNames;
+    }
 
     // TaskListにアラーム鳴らすやつがあるかチェック
     // *****[未修整]******

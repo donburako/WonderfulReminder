@@ -12,10 +12,10 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit); // レイアウトを適用
         TaskManager.setEdiAct(this); // TaskManagerと連結
     }
-    public void change(View view){
-        finish();
-    }
-    public void toDelete(View view){
-        finish();
-    }
+    //public void change(View view){ TaskManager.editExecute(); }
+    //public void toDelete(View view){
+    //    finish();
+    //}
+
+    //private Task makeTask()
 }

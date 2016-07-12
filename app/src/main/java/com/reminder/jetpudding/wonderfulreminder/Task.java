@@ -62,7 +62,7 @@ public class Task {
 
     // 全てのtaskを読み込んでリストにして返す
     public static List<Task> getAllTasks(TaskDB taskdb){
-        List<Task> allTasks = new ArrayList<Task>(); // 全てのtaskを入れるList
+        List<Task> allTasks = new ArrayList<>(); // 全てのtaskを入れるList
 
         try{
             // SQL文の実行、それをCursorに格納
