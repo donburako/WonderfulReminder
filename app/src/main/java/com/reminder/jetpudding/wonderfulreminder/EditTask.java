@@ -36,16 +36,8 @@ public class EditTask {
         db = taskdb.getWritableDatabase();
 
         // 2. TaskをByteに変換
-        byte[] taskByteBefore = null;
         byte[] taskByteAfter = null;
         try{
-            // before
-            ByteArrayOutputStream byteosB = new ByteArrayOutputStream();
-            ObjectOutputStream objosB = new ObjectOutputStream(byteosB);
-            objosB.writeObject(before);
-            objosB.close(); byteosB.close();
-            taskByteBefore = byteosB.toByteArray();
-
             // after
             ByteArrayOutputStream byteosA = new ByteArrayOutputStream();
             ObjectOutputStream objosA = new ObjectOutputStream(byteosA);
@@ -58,10 +50,11 @@ public class EditTask {
 
         // 3. ContentValuesでアップデート文作成
         ContentValues values = new ContentValues();
+        values.put("ID", before.getNumber());
         values.put("TASK", taskByteAfter);
 
         // 4. dbをアップデート
-        long result = db.update(TABLE_NAME, values, "TASK = " + taskByteBefore.toString(), null);
+        long result = db.update(TABLE_NAME, values, "ID = ?", new String[]{ String.valueOf(before.getNumber()) });
 
         // 失敗した場合
         if(result == -1) throw new SQLException("Failed to update row");

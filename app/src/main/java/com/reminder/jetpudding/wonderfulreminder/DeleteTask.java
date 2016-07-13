@@ -37,6 +37,7 @@ public class DeleteTask {
         db = taskdb.getWritableDatabase();
 
         // 2. TaskをByteに変換
+        /* [7/13]現在不使用
         byte[] taskByte = null;
         try{
             ByteArrayOutputStream byteos = new ByteArrayOutputStream();
@@ -47,15 +48,16 @@ public class DeleteTask {
         }catch(java.io.IOException e){
             e.printStackTrace();
         }
+        */
 
         // 3. dbからデリート
-        long result = db.delete(TABLE_NAME, "TASK = ?", new String[]{ taskByte.toString() });
+        long result = db.delete(TABLE_NAME, "ID = ?", new String[]{ String.valueOf(task.getNumber()) });
 
         // 失敗した場合
         if(result == -1) throw new SQLException("Failed to delete row");
 
         // 何も削除されなかった場合
-        //if(result == 0) throw new SQLException("Task to delete is not find");
+        if(result == 0) throw new SQLException("Task to delete is not find");
 
         // 4. dbをclose
         db.close();

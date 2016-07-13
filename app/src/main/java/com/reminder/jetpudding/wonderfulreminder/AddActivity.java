@@ -46,7 +46,7 @@ public class AddActivity extends AppCompatActivity {
         Task task= new Task(TaskManager.getTaskListSize(),taskName,endCal.getTime(),detail);
 
         // ** debug **
-        makeDialog("AddTask", "Task: name="+taskName+" detail="+detail+" time="+endTime.getYear()+"/"+endTime.getMonth()+"/"+endTime.getDayOfMonth());
+        makeDialog("AddTask", "Task: num="+task.getNumber()+" name="+taskName+" detail="+detail+" time="+endTime.getYear()+"/"+endTime.getMonth()+"/"+endTime.getDayOfMonth());
 
         // TaskAdd
         TaskManager.addExecute(task);

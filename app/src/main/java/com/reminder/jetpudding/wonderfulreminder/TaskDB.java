@@ -22,7 +22,7 @@ public class TaskDB extends SQLiteOpenHelper{
 
     // DataBase作成時の実行文
     final private String createTableSql = "Create table WR_DB ("
-                                            +"ID INTEGER PRIMARY KEY AUTOINCREMENT"
+                                            +"ID INTEGER PRIMARY KEY"
                                             +",TASK BLOB NOT NULL)";
 
     // databaseがない時にonCreateが呼び出される→呼び出されたらdatabaseを作ればよい

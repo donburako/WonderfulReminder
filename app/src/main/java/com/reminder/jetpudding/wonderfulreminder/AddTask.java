@@ -55,6 +55,7 @@ public class AddTask {
 
         // 3. ContentValuesでインサート文作成
         ContentValues values = new ContentValues();
+        values.put("ID", task.getNumber());
         values.put("TASK", taskByte);
 
         // 4. dbにインサート

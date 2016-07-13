@@ -104,7 +104,7 @@ class ListAdapter extends ArrayAdapter<Task>{
             final Task item = this.getItem(position);
             if(item != null){
                 mTitle = (TextView)convertView.findViewById(R.id.taskNameText);
-                mTitle.setText(item.getTaskName());
+                mTitle.setText(item.getTaskName() + " " + item.getNumber());
                 // 編集ボタン
                 mButton = (Button)convertView.findViewById(R.id.toEditButton);
                 mButton.setOnClickListener(new View.OnClickListener() {
