@@ -26,16 +26,18 @@ public class TaskManager{
     private static MainReminderActivity mrAct;// = new MainReminderActivity();
     private static AddActivity adAct;// = new AddActivity();
     private static EditActivity ediAct;// = new EditActivity();
+    private static Context context;
 
     /*---[ SETTER ]---*/
     public static void setTaskList(List<Task> tl){ taskList = (ArrayList<Task>) tl; }
-    public static void setAlarm(Alarm al){ alarm = al; }
+    public static void setAlarm(Alarm al){ alarm = al;alarm.ring(context);}
     public static void setAddtask(AddTask at){ addtask = at; }
     public static void setEdittask(EditTask et){ edittask = et; }
     public static void setDeletetask(DeleteTask dt){ deletetask = dt; }
     public static void setMrAct(MainReminderActivity mr){ mrAct = mr; }
     public static void setAdAct(AddActivity ad){ adAct = ad; }
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
+    public static void setContext(Context c){ context = c; }
 
     /*---[ GETTER ]---*/
     // Activity
@@ -98,6 +100,8 @@ public class TaskManager{
 
     //初期化
     public void init(Context context){
+        TaskManager.setContext(context);
+
         TaskDB db=new TaskDB(context);
 
         // static spaceの方のTaskManagerにインスタンスを送る
