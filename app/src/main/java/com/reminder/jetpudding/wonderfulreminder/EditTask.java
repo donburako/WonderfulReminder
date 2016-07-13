@@ -50,7 +50,6 @@ public class EditTask {
 
         // 3. ContentValuesでアップデート文作成
         ContentValues values = new ContentValues();
-        values.put("ID", before.getNumber());
         values.put("TASK", taskByteAfter);
 
         // 4. dbをアップデート

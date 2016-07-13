@@ -64,6 +64,7 @@ public class Task implements Serializable{
     // 全てのtaskを読み込んでリストにして返す
     public static List<Task> getAllTasks(TaskDB taskdb){
         List<Task> allTasks = new ArrayList<>(); // 全てのtaskを入れるList
+        int maxId = 0; // ついでにID取得
 
         try{
             // SQL文の実行、それをCursorに格納
@@ -74,7 +75,9 @@ public class Task implements Serializable{
             c.moveToFirst(); // 最初のデータの行へカーソルを移動
             for(int i = 0; i<c.getCount(); i++){
                 ois = new ObjectInputStream(new ByteArrayInputStream(c.getBlob(1)));
-                allTasks.add((Task) ois.readObject()); ois.close();
+                Task t = (Task) ois.readObject();
+                maxId = Math.max(maxId, t.getNumber());
+                allTasks.add(t); ois.close();
                 c.moveToNext();
             }
 
@@ -83,6 +86,8 @@ public class Task implements Serializable{
         }catch(SQLException e){ e.printStackTrace();
 
         }
+
+        TaskManager.setNowId(maxId);
 
         return allTasks;
     }

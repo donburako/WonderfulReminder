@@ -17,16 +17,17 @@ public class TaskManager{
     ////////////////////////////
 
     /*---[ PARAMETER ]---*/
-    /* 仮でnewしておく… */
-    private static List<Task> taskList;// = new ArrayList<Task>();
-    private static Alarm alarm;// = new Alarm();
-    private static AddTask addtask;// = new AddTask(null);
-    private static DeleteTask deletetask;// = new DeleteTask(null);
-    private static EditTask edittask;// = new EditTask(null);
-    private static MainReminderActivity mrAct;// = new MainReminderActivity();
-    private static AddActivity adAct;// = new AddActivity();
-    private static EditActivity ediAct;// = new EditActivity();
+    private static List<Task> taskList;
+    private static Alarm alarm;
+    private static AddTask addtask;
+    private static DeleteTask deletetask;
+    private static EditTask edittask;
+    private static MainReminderActivity mrAct;
+    private static AddActivity adAct;
+    private static EditActivity ediAct;
     private static Context context;
+    private static int nowId; // ID割り振り用
+    private static boolean isInit = false;
 
     /*---[ SETTER ]---*/
     public static void setTaskList(List<Task> tl){ taskList = (ArrayList<Task>) tl; }
@@ -38,24 +39,22 @@ public class TaskManager{
     public static void setAdAct(AddActivity ad){ adAct = ad; }
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
     public static void setContext(Context c){ context = c; }
+    public static void setNowId(int id){ nowId = id; }
 
     /*---[ GETTER ]---*/
     // Activity
     public static MainReminderActivity getMrAct(){ return mrAct; }
     public static AddActivity getAdAct(){ return adAct; }
     public static EditActivity getEdiAct(){ return ediAct; }
+    // nowId
+    public static int getNowId(){ return nowId++; }
+    // isInit
+    public static boolean getIsInit(){ return isInit; }
     // taskList
     public static List<Task> getTaskList(){ return taskList; }
     // taskの数
     public static int getTaskListSize(){ return taskList.size(); }
-    // tasknameのリスト 必要？？？
-    public static List<String> getTaskNames(){
-        List<String> taskNames = new ArrayList<>();
-        for(Task t:taskList)
-            { taskNames.add(t.getTaskName()); }
-        return taskNames;
-    }
-    // DEBUG用 全部値が設定されているか？ -> 全部あらかじめnewしてるんじゃそりゃtrueになるわな
+    // DEBUG用 全部値が設定されているか？
     public static boolean isInit()
         { return taskList!=null && alarm!=null && addtask!=null && edittask!=null && deletetask!=null
                     && mrAct!=null && adAct!=null && ediAct!=null;}
@@ -73,13 +72,14 @@ public class TaskManager{
     // ********************
 
     public static void addExecute(Task task){ if(addtask.execute(task))
-        taskList.add(task); }
+        taskList.add(task);}
     public static void deleteExecute(Task task){ if(deletetask.execute(task))
         taskList.remove(task);
     }
     public static void editExecute(Task before, Task after)
         { if(edittask.execute(before,after))taskList.set(taskList.indexOf(before), after); }
 
+    public static void initOk(){ isInit = true; }
 
 
 
@@ -112,10 +112,6 @@ public class TaskManager{
 
         // Alarm
         TaskManager.setAlarm(new Alarm());
-
-        //画面はこっちじゃなくそれぞれの画面の方でやってもらう
-
-        // /mrAct.makeDialog("From TaskManager.init()", "init() finished!");
     }
 
 }

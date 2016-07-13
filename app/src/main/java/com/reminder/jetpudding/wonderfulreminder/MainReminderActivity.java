@@ -19,16 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainReminderActivity extends AppCompatActivity {
-    private boolean isInit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_reminder); // 描画するレイアウトの指定(画面に表示する命令ではないことに注意)
 
-        if(!isInit) {
+        if(!TaskManager.isInit()) {
+            TaskManager.initOk();
             new TaskManager().init(getApplicationContext()); // taskManagerの初期化
             TaskManager.setMrAct(this); // taskManagerと連結
+            makeDialog("DEBUG", "throw TaskManager.init()");//"nowId = "+TaskManager.getNowId()); //debug でもやるたび1上がっちゃう
         }
 
         List<Task> taskList = TaskManager.getTaskList();
@@ -37,7 +38,7 @@ public class MainReminderActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listview_tasklist);
         listView.setAdapter(adapter);
 
-        makeDialog("DEBUG", "taskList.size() = "+taskList.size());
+        //makeDialog("DEBUG", "nowId = "+TaskManager.getNowId()); //debug でもやるたび1上がっちゃう
     }
 
 
@@ -74,6 +75,10 @@ public class MainReminderActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 TaskManager.deleteExecute(item); // 削除実行
+
+                //更新のため再度Mainを表示
+                Intent i = new Intent(MainReminderActivity.this, MainReminderActivity.class);
+                startActivity(i);
             }
         });
         alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {

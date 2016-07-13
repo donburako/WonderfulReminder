@@ -28,7 +28,7 @@ public class DeleteTask {
     private boolean delete(Task task){
         // ---[手順]---
         // 1. taskdbからdbを開く
-        // 2. TaskをByteに変換
+        // 2. TaskをByteに変換 [7/13]現在不使用
         // 3. dbからデリート
         // 4. dbをclose
         // ------------

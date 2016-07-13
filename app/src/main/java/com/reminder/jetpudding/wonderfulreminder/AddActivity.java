@@ -43,7 +43,7 @@ public class AddActivity extends AppCompatActivity {
         endCal.set(endTime.getYear(), endTime.getMonth(), endTime.getDayOfMonth());
 
         // Task作成
-        Task task= new Task(TaskManager.getTaskListSize(),taskName,endCal.getTime(),detail);
+        Task task= new Task(TaskManager.getNowId(),taskName,endCal.getTime(),detail);
 
         // ** debug **
         makeDialog("AddTask", "Task: num="+task.getNumber()+" name="+taskName+" detail="+detail+" time="+endTime.getYear()+"/"+endTime.getMonth()+"/"+endTime.getDayOfMonth());
