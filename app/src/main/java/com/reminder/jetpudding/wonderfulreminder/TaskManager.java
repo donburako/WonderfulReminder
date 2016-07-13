@@ -26,7 +26,6 @@ public class TaskManager{
     private static AddActivity adAct;
     private static EditActivity ediAct;
     private static Context context;
-    private static int nowId; // ID割り振り用
     private static boolean isInit = false;
 
     /*---[ SETTER ]---*/
@@ -39,25 +38,18 @@ public class TaskManager{
     public static void setAdAct(AddActivity ad){ adAct = ad; }
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
     public static void setContext(Context c){ context = c; }
-    public static void setNowId(int id){ nowId = id; }
 
     /*---[ GETTER ]---*/
     // Activity
     public static MainReminderActivity getMrAct(){ return mrAct; }
     public static AddActivity getAdAct(){ return adAct; }
     public static EditActivity getEdiAct(){ return ediAct; }
-    // nowId
-    public static int getNowId(){ return nowId++; }
     // isInit
     public static boolean getIsInit(){ return isInit; }
     // taskList
     public static List<Task> getTaskList(){ return taskList; }
     // taskの数
     public static int getTaskListSize(){ return taskList.size(); }
-    // DEBUG用 全部値が設定されているか？
-    public static boolean isInit()
-        { return taskList!=null && alarm!=null && addtask!=null && edittask!=null && deletetask!=null
-                    && mrAct!=null && adAct!=null && ediAct!=null;}
 
 
     /*---[ FUNCTION ]---*/
@@ -71,8 +63,7 @@ public class TaskManager{
 
     // ********************
 
-    public static void addExecute(Task task){ if(addtask.execute(task))
-        taskList.add(task);}
+    public static void addExecute(Task task){ taskList.add(addtask.execute(task)); }
     public static void deleteExecute(Task task){ if(deletetask.execute(task))
         taskList.remove(task);
     }

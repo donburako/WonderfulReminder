@@ -25,11 +25,11 @@ public class MainReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_reminder); // 描画するレイアウトの指定(画面に表示する命令ではないことに注意)
 
-        if(!TaskManager.isInit()) {
+        if(!TaskManager.getIsInit()) {
             TaskManager.initOk();
             new TaskManager().init(getApplicationContext()); // taskManagerの初期化
             TaskManager.setMrAct(this); // taskManagerと連結
-            makeDialog("DEBUG", "throw TaskManager.init()");//"nowId = "+TaskManager.getNowId()); //debug でもやるたび1上がっちゃう
+            //makeDialog("DEBUG", "throw TaskManager.init()");//"nowId = "+TaskManager.getNowId()); //debug でもやるたび1上がっちゃう
         }
 
         List<Task> taskList = TaskManager.getTaskList();
@@ -40,7 +40,6 @@ public class MainReminderActivity extends AppCompatActivity {
 
         //makeDialog("DEBUG", "nowId = "+TaskManager.getNowId()); //debug でもやるたび1上がっちゃう
     }
-
 
     public void toAddTaskActivity(View view){
         Intent intent = new Intent(MainReminderActivity.this, AddActivity.class);
