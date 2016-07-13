@@ -1,4 +1,5 @@
 package com.reminder.jetpudding.wonderfulreminder;
+import android.content.Context;
 import android.media.MediaPlayer;
 import java.util.Date;
 /**
@@ -7,19 +8,25 @@ import java.util.Date;
 public class Alarm {
     private MediaPlayer mp;
 
-    public void ring(){
-
-     //  mp = MediaPlayer.create(this, R.raw.test);
+    public void ring(Context context){
+       mp = MediaPlayer.create(context, R.raw.test);
         // resのrawディレクトリにtest.mp3を置いた場合(今はまだファイルもフォルダもないのでエラー状態)
         mp.start();
+
     }
+    //アラームストップ
+    private void stopAndRelaese(){
+            mp.stop();
+            mp.release();
+    }
+
     public boolean matchtime(Date endtime, Date currenttime){
-       // if(endtime.equals(currenttime.TaskManager)){
+       if(endtime.equals(currenttime)){
             //TaskManagerを入れてくれればエラーは消えるはず！
             return true;
-       //}else{
-         //   return false;
-        //}
+       }else{
+            return false;
+        }
       }
-    }
+}
 
