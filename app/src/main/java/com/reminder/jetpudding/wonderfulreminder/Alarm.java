@@ -9,9 +9,9 @@ public class Alarm {
     private MediaPlayer mp;
 
     public void ring(Context context){
-       mp = MediaPlayer.create(context, R.raw.test);
+       //mp = MediaPlayer.create(context, R.raw.test);
         // resのrawディレクトリにtest.mp3を置いた場合(今はまだファイルもフォルダもないのでエラー状態)
-        mp.start();
+        //mp.start();
 
     }
     //アラームストップ

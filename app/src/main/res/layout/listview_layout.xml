@@ -2,14 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="match_parent">
 
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/taskNameText"
-        android:textSize="30dp"
-        android:text="nothing"
-        android:layout_alignBaseline="@+id/toDeleteButton">
-    </TextView>
-
     <Button android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/toDeleteButton"
@@ -27,4 +19,15 @@
         android:layout_toLeftOf="@+id/toDeleteButton"
         android:layout_toStartOf="@+id/toDeleteButton">
     </Button>
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskNameText"
+        android:textSize="30dp"
+        android:text="nothing"
+        android:layout_alignBottom="@+id/toDeleteButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorTaskName">
+    </TextView>
 </RelativeLayout>

@@ -49,13 +49,13 @@ public class DeleteTask {
         }
 
         // 3. dbからデリート
-        long result = db.delete(TABLE_NAME, "ID = " + task.getNumber() , null);
+        long result = db.delete(TABLE_NAME, "TASK = ?", new String[]{ taskByte.toString() });
 
         // 失敗した場合
         if(result == -1) throw new SQLException("Failed to delete row");
 
         // 何も削除されなかった場合
-        if(result == 0) throw new SQLException("Task to delete is not find");
+        //if(result == 0) throw new SQLException("Task to delete is not find");
 
         // 4. dbをclose
         db.close();
