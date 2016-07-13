@@ -19,28 +19,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainReminderActivity extends AppCompatActivity {
+    private boolean isInit = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_reminder); // 描画するレイアウトの指定(画面に表示する命令ではないことに注意)
 
-        new TaskManager().init(getApplicationContext()); // taskManagerの初期化
-        TaskManager.setMrAct(this); // taskManagerと連結
-    }
+        if(!isInit) {
+            new TaskManager().init(getApplicationContext()); // taskManagerの初期化
+            TaskManager.setMrAct(this); // taskManagerと連結
+        }
 
-    // onStartはonCreateより遅く実行される
-
-    @Override
-    protected void onStart(){
-        super.onStart();
         List<Task> taskList = TaskManager.getTaskList();
         ListAdapter adapter = new ListAdapter(getApplicationContext(), taskList);
 
         ListView listView = (ListView) findViewById(R.id.listview_tasklist);
         listView.setAdapter(adapter);
 
-        // isInit()...
-        // makeDialog("TaskManager is inited?", String.valueOf(TaskManager.isInit()));
+        makeDialog("DEBUG", "taskList.size() = "+taskList.size());
     }
 
 

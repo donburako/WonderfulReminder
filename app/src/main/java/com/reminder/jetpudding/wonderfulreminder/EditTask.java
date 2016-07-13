@@ -20,10 +20,10 @@ public class EditTask {
     public EditTask(TaskDB taskdb){ this.taskdb = taskdb; }
 
     // TaskManagerからの呼び出し
-    public void execute(Task before, Task after){ edit(before, after); }
+    public boolean execute(Task before, Task after){ return edit(before, after); }
 
     // Taskの更新
-    private void edit(Task before, Task after){
+    private boolean edit(Task before, Task after){
         // ---[手順]---
         // 1. taskdbからdbを開く
         // 2. TaskをByteに変換
@@ -68,5 +68,7 @@ public class EditTask {
 
         // 5. dbをclose
         db.close();
+
+        return result != -1;
     }
 }

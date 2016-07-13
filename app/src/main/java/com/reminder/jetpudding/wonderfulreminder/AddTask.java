@@ -24,12 +24,12 @@ public class AddTask {
     }
 
     // TaskManagerからの呼び出し
-    public void execute(Task task){
-        add(task);
+    public boolean execute(Task task){
+        return add(task);
     }
 
     // Taskの追加
-    private void add(Task task){
+    private boolean add(Task task){
         // ---[手順]---
         // 1. taskdbからdbを開く
         // 2. TaskをByteに変換
@@ -65,5 +65,7 @@ public class AddTask {
 
         // 5. dbをclose
         db.close();
+
+        return result != -1;
     }
 }

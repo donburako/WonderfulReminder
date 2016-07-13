@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.*;
 
-public class TaskManager extends AppCompatActivity{
+public class TaskManager{
 
     ////////////////////////////
     // static space           //
@@ -70,9 +70,13 @@ public class TaskManager extends AppCompatActivity{
 
     // ********************
 
-    public static void addExecute(Task task){ addtask.execute(task); }
-    public static void deleteExecute(Task task){ deletetask.execute(task); }
-    public static void editExecute(Task before, Task after){ edittask.execute(before,after); }
+    public static void addExecute(Task task){ if(addtask.execute(task))
+        taskList.add(task); }
+    public static void deleteExecute(Task task){ if(deletetask.execute(task))
+        taskList.remove(task);
+    }
+    public static void editExecute(Task before, Task after)
+        { if(edittask.execute(before,after))taskList.set(taskList.indexOf(before), after); }
 
 
 
@@ -84,11 +88,13 @@ public class TaskManager extends AppCompatActivity{
     //////////////////////
 
     // 実行時に開始したいからonCreateを書いたけど…それは適切なのか…？
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //init();
     }
+    */
 
     //初期化
     public void init(Context context){

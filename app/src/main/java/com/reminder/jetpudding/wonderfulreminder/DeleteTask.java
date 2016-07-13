@@ -20,12 +20,12 @@ public class DeleteTask {
     public DeleteTask(TaskDB taskdb){ this.taskdb = taskdb; }
 
     // TaskManagerからの呼び出し
-    public void execute(Task task){
-        delete(task);
+    public boolean execute(Task task){
+        return delete(task);
     }
 
     // Taskの削除
-    private void delete(Task task){
+    private boolean delete(Task task){
         // ---[手順]---
         // 1. taskdbからdbを開く
         // 2. TaskをByteに変換
@@ -49,12 +49,17 @@ public class DeleteTask {
         }
 
         // 3. dbからデリート
-        long result = db.delete(TABLE_NAME, "TASK = " + taskByte.toString() , null);
+        long result = db.delete(TABLE_NAME, "ID = " + task.getNumber() , null);
 
         // 失敗した場合
         if(result == -1) throw new SQLException("Failed to delete row");
 
+        // 何も削除されなかった場合
+        if(result == 0) throw new SQLException("Task to delete is not find");
+
         // 4. dbをclose
         db.close();
+
+        return result != -1;
     }
 }
