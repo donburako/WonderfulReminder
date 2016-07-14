@@ -51,6 +51,8 @@ public class DeleteTask {
         */
 
         // 3. dbからデリート
+        int debugnum = task.getNumber();
+        String debugnumS = String.valueOf(task.getNumber());
         long result = db.delete(TABLE_NAME, "ID = ?", new String[]{ String.valueOf(task.getNumber()) });
 
         // 失敗した場合
