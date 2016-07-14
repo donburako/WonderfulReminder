@@ -23,7 +23,6 @@ public class AlartAlarm extends Activity{
         AlertDialog Dialog=dialogBuilder.create();
         dialogBuilder.setTitle("リマインダー");
         dialogBuilder.setMessage("時間になりました");
-        Dialog.show();
         onStart();
         dialogBuilder.setPositiveButton("OK",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
@@ -33,6 +32,9 @@ public class AlartAlarm extends Activity{
         });
 
         dialogBuilder.setCancelable(true);
+
+        Dialog.show();
+
     }
     @Override
     public void onStart(){
