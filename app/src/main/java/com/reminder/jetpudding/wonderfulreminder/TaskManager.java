@@ -20,7 +20,6 @@ public class TaskManager{
 
     /*---[ PARAMETER ]---*/
     private static List<Task> taskList;
-    private static Alarm alarm;
     private static AddTask addtask;
     private static DeleteTask deletetask;
     private static EditTask edittask;
@@ -30,9 +29,13 @@ public class TaskManager{
     private static Context context;
     private static boolean isInit = false;
 
+    // AlarmManager関係
+    private static final String TAG = TaskManager.class.getSimpleName();
+    private static PendingIntent mAlarmSender;
+    private static AlarmManager am;
+
     /*---[ SETTER ]---*/
     public static void setTaskList(List<Task> tl){ taskList = (ArrayList<Task>) tl; }
-    public static void setAlarm(Alarm al){ alarm = al;al.ring(context);}
     public static void setAddtask(AddTask at){ addtask = at; }
     public static void setEdittask(EditTask et){ edittask = et; }
     public static void setDeletetask(DeleteTask dt){ deletetask = dt; }
@@ -40,6 +43,8 @@ public class TaskManager{
     public static void setAdAct(AddActivity ad){ adAct = ad; }
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
     public static void setContext(Context c){ context = c; }
+    public static void setmAlarmSender(PendingIntent pi){ mAlarmSender = pi; }
+    public static void setAm(AlarmManager a){ am = a; }
 
     /*---[ GETTER ]---*/
     // Activity
@@ -53,24 +58,11 @@ public class TaskManager{
     // taskの数
     public static int getTaskListSize(){ return taskList.size(); }
     //alarm
-    public static Alarm getAlarm(){return alarm;}
+    public static PendingIntent getmAlarmSender(){ return mAlarmSender; }
+    public static AlarmManager getAm(){ return am; }
 
 
     /*---[ FUNCTION ]---*/
-    // TaskListにアラーム鳴らすやつがあるかチェック
-    // *****[未修整]******
-
-    Context c;
-    AlarmManager am;
-    private PendingIntent mAlarmSender;
-
-    private static final String TAG = TaskManager.class.getSimpleName();
-
-    public TaskManager(Context c){
-        // 初期化
-        this.c = c;
-        am = (AlarmManager)c.getSystemService(Context.ALARM_SERVICE);
-    }
 
     public void addAlarm(int alarmHour, int alarmMinute){
         // アラームを設定する
@@ -159,15 +151,6 @@ public class TaskManager{
     // 初期化担当！     //
     //////////////////////
 
-    // 実行時に開始したいからonCreateを書いたけど…それは適切なのか…？
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        //init();
-    }
-    */
-
     //初期化
     public void init(Context context) {
         TaskManager.setContext(context);
@@ -181,10 +164,7 @@ public class TaskManager{
         TaskManager.setEdittask(new EditTask(db));
 
         // Alarm
-        //TaskManager.setAlarm(new Alarm());
-
-        //Alarm確かめっぱなし
-
+        TaskManager.setAm((AlarmManager)context.getSystemService(Context.ALARM_SERVICE));
 
         }
     }
