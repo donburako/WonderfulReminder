@@ -1,8 +1,6 @@
 package com.reminder.jetpudding.wonderfulreminder;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteCursor;
-import android.widget.DatePicker;
-import android.widget.EditText;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
