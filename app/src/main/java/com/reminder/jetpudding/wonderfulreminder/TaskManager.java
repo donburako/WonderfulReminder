@@ -3,9 +3,12 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.*;
 
@@ -60,7 +63,6 @@ public class TaskManager{
     // TaskListにアラーム鳴らすやつがあるかチェック
     // *****[未修整]******
 
-    Context c;
     AlarmManager am;
     private PendingIntent mAlarmSender;
 
@@ -68,11 +70,11 @@ public class TaskManager{
 
     public TaskManager(Context c){
         // 初期化
-        this.c = c;
+        this.context = context;
         am = (AlarmManager)c.getSystemService(Context.ALARM_SERVICE);
     }
 
-    public void addAlarm(int alarmHour, int alarmMinute){
+    public void addAlarm(){
         // アラームを設定する
         mAlarmSender = this.getPendingIntent();
 
@@ -86,21 +88,18 @@ public class TaskManager{
             //カレンダー変数への変換
             cal.setTime(t.getEndTime());
 
-            cal.set(cal.YEAR,current.MONTH,current.DATE,current.HOUR,current.MINUTE);
-
             //時刻になったらring()で音鳴らす
-                setAlarm(alarm);
-            }
-        cal.set(Calendar.HOUR_OF_DAY, alarmHour);
-        cal.set(Calendar.MINUTE, alarmMinute);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
+            cal.set(Calendar.HOUR_OF_DAY, cal.HOUR_OF_DAY);
+            cal.set(Calendar.MINUTE, cal.MINUTE);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
+        }
 
         // 過去だったら明日にする
         if(cal.getTimeInMillis() < System.currentTimeMillis()){
             cal.add(Calendar.DAY_OF_YEAR, 1);
         }
-        Toast.makeText(c, String.format("%02d時%02d分に起こします", alarmHour, alarmMinute), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, String.format("%02d時%02d分に鳴らします", cal.HOUR_OF_DAY, cal.MINUTE), Toast.LENGTH_LONG).show();
 
         am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), mAlarmSender);
         Log.v(TAG, cal.getTimeInMillis()+"ms");
@@ -111,13 +110,13 @@ public class TaskManager{
         // アラームのキャンセル
         Log.d(TAG, "stopAlarm()");
         am.cancel(mAlarmSender);
-        spm.updateToRevival();
+        //spm.updateToRevival();
     }
 
     private PendingIntent getPendingIntent() {
         // アラーム時に起動するアプリケーションを登録
-        Intent intent = new Intent(c, MyAlarmService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(c, PendingIntent.FLAG_ONE_SHOT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(context, AlartAlarm.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, PendingIntent.FLAG_ONE_SHOT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pendingIntent;
     }
 
