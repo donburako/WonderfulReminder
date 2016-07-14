@@ -69,9 +69,9 @@ public class TaskManager{
 
     /*---[ FUNCTION ]---*/
 
-    public static void addExecute(Task task){ taskList.add(addtask.execute(task)); }
-    public static void deleteExecute(Task task){ if(deletetask.execute(task))
-        taskList.remove(task);
+    public static void addExecute(Task task, Context c){ taskList.add(addtask.execute(task)); alarm.addAlarm(task,c);}
+    public static void deleteExecute(Task task){
+        if(deletetask.execute(task)){ taskList.remove(task); alarm.stopAlarm(task.getNumber()); }
     }
     public static void editExecute(Task before, Task after)
         { if(edittask.execute(before,after))taskList.set(taskList.indexOf(before), after); }
