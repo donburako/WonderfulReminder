@@ -31,18 +31,22 @@ public class AddTask {
 
     // Taskの追加
     private Task add(Task task){
-        // ---[手順]---
-        // 1. taskdbからdbを開く
-        // 2. TaskをByteに変換
-        // 3. ContentValuesでインサート文作成
-        // 4. dbにインサート
-        // 5. dbをclose
-        // ------------
 
-        // 1. taskdbからdbを開く
+        // taskdbからdbを開く
         db = taskdb.getWritableDatabase();
 
-        // 2. TaskをByteに変換
+        // taskの中身を調節(numberを)
+        // antoincrementを解除したので、管理できるはず…
+        Cursor c = db.rawQuery("SELECT MAX(ID) FROM WR_DB", null);
+        int id = -1;
+        if (c != null && c.moveToLast()){ id = c.getInt(0) + 1; }
+        //TaskManager.getAdAct().makeDialog("LAST_INSERT_ROWID()", "rowId="+(rowId));
+        task.setNumber(id);
+
+        // tasknumberが-1のままだったらエラー
+        if(task.getNumber()==-1) throw new SQLException("Failed set taskNumber");
+
+        // TaskをByteに変換
         byte[] taskByte = null;
         try{
             ByteArrayOutputStream byteos = new ByteArrayOutputStream();
@@ -56,6 +60,7 @@ public class AddTask {
 
         // 3. ContentValuesでインサート文作成
         ContentValues values = new ContentValues();
+        values.put("ID",id);
         values.put("TASK", taskByte);
 
         // 4. dbにインサート
@@ -63,26 +68,6 @@ public class AddTask {
 
         // 失敗した場合
         if(result == -1) throw new SQLException("Failed to insert row");
-
-        task.setNumber((int)result);
-
-        byte[] taskByteUpdate = null;
-        try{
-            // after
-            ByteArrayOutputStream byteosA = new ByteArrayOutputStream();
-            ObjectOutputStream objosA = new ObjectOutputStream(byteosA);
-            objosA.writeObject(task);
-            objosA.close(); byteosA.close();
-            taskByteUpdate = byteosA.toByteArray();
-        }catch(java.io.IOException e){
-            e.printStackTrace();
-        }
-
-        // taskNumberをただしたものでアップデート
-        ContentValues valuesUpdate = new ContentValues();
-        valuesUpdate.put("TASK", taskByteUpdate);
-        long resultUpdate = db.update(TABLE_NAME, valuesUpdate, "ID = -1", null);
-        if(resultUpdate==-1) throw new SQLException("[AddTask] update task is defined");
 
         // 5. dbをclose
         db.close();
