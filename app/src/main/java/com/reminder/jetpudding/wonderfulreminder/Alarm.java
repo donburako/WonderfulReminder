@@ -50,6 +50,7 @@ public class Alarm{
 
     public void stopAlarm(Context c, int num) {
         // アラームのキャンセル
+        am = (AlarmManager)c.getSystemService(Context.ALARM_SERVICE);
         am.cancel(getPendingIntent(c, num));
         //spm.updateToRevival();
     }
