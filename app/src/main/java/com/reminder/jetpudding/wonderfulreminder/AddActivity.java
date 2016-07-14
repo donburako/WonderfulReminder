@@ -46,7 +46,10 @@ public class AddActivity extends AppCompatActivity {
         Calendar endCal = Calendar.getInstance();
         endCal.set(endDay.getYear(), endDay.getMonth(), endDay.getDayOfMonth(),endTime.getHour(),endTime.getMinute());
 
-        makeDialog("calender",endCal.toString());
+        // debug
+        String timeStr = endDay.getYear() + "年" + endDay.getMonth() + "月" + endDay.getDayOfMonth() + "日"
+                + endTime.getHour() + "時" + endTime.getMinute();
+        Toast.makeText(getApplicationContext(), timeStr, Toast.LENGTH_LONG).show();
 
         // Task作成
         Task task= new Task(-1,taskName,endCal.getTime(),detail); //初期-1

@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import java.util.*;
 import android.media.*;
+import android.widget.Toast;
 
 public class AlartAlarm extends Activity{
     private MediaPlayer mp;
@@ -43,6 +44,7 @@ public class AlartAlarm extends Activity{
             mp=MediaPlayer.create(this,R.raw.test);
         }
         mp.start();
+        Toast.makeText(getApplicationContext(), "アラームすたーと", Toast.LENGTH_LONG).show();
     }
     @Override
     public void onDestroy(){

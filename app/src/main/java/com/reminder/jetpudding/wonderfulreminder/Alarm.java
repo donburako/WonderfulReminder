@@ -27,24 +27,9 @@ public class Alarm{
 
         // アラーム時間設定
         Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(System.currentTimeMillis());
 
         // 設定した時刻をカレンダーに設定
-            //cal.setTime(task.getEndTime());
         cal.setTime(task.getEndTime());
-        int hour=cal.HOUR_OF_DAY;
-        int min=cal.MINUTE;
-        cal.set(cal.HOUR_OF_DAY,hour);
-        cal.set(cal.MINUTE,min);
-        cal.set(cal.SECOND, 0);
-        cal.set(cal.MILLISECOND, 0);
-
-        // 過去だったら明日にする
-        if(cal.getTimeInMillis() < System.currentTimeMillis()){
-            cal.add(Calendar.DAY_OF_YEAR, 1);
-        }
-        Toast.makeText(context, String.format("%02d時%02d分に起こします", hour, min), Toast.LENGTH_LONG).show();
-
         am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),pen);
     }
 
