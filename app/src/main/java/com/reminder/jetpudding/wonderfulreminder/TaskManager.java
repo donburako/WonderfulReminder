@@ -28,11 +28,7 @@ public class TaskManager{
     private static MainReminderActivity mrAct;
     private static AddActivity adAct;
     private static EditActivity ediAct;
-    private static Context context;
     private static boolean isInit = false;
-
-    // AlarmManager関係
-    private static final String TAG = TaskManager.class.getSimpleName();
     private static Alarm alarm;
 
 
@@ -45,7 +41,6 @@ public class TaskManager{
     public static void setMrAct(MainReminderActivity mr){ mrAct = mr; }
     public static void setAdAct(AddActivity ad){ adAct = ad; }
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
-    public static void setContext(Context c){ context = c; }
     public static void setAlarm(Alarm a){ alarm = a; }
 
 
@@ -64,8 +59,8 @@ public class TaskManager{
     /*---[ FUNCTION ]---*/
 
     public static void addExecute(Task task, Context c){ taskList.add(addtask.execute(task)); alarm.addAlarm(task,c);}
-    public static void deleteExecute(Task task){
-        if(deletetask.execute(task)){ taskList.remove(task); alarm.stopAlarm(task.getNumber()); }
+    public static void deleteExecute(Task task, Context c){
+        if(deletetask.execute(task)){ taskList.remove(task); alarm.stopAlarm(c, task.getNumber()); }
     }
     public static void editExecute(Task before, Task after)
         { if(edittask.execute(before,after))taskList.set(taskList.indexOf(before), after); }
@@ -82,8 +77,6 @@ public class TaskManager{
 
     //初期化
     public void init(Context context) {
-        TaskManager.setContext(context);
-
         TaskDB db = new TaskDB(context);
 
         // static spaceの方のTaskManagerにインスタンスを送る
@@ -94,7 +87,6 @@ public class TaskManager{
 
         // Alarm
         TaskManager.setAlarm(new Alarm());
-        TaskManager.setAm((AlarmManager)context.getSystemService(Context.ALARM_SERVICE));
 
         }
     }

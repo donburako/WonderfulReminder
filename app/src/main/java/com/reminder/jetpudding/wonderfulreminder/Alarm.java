@@ -22,7 +22,7 @@ public class Alarm{
     public void addAlarm(Task task,Context context){
         // アラームを設定する
 
-        pen = this.getPendingIntent(context);
+        pen = this.getPendingIntent(context, task.getNumber());
         am  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
         // アラーム時間設定
@@ -45,13 +45,12 @@ public class Alarm{
         }
         Toast.makeText(context, String.format("%02d時%02d分に起こします", hour, min), Toast.LENGTH_LONG).show();
 
-
         am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),pen);
     }
 
-    public void stopAlarm() {
+    public void stopAlarm(Context c, int num) {
         // アラームのキャンセル
-        am.cancel(pen);
+        am.cancel(getPendingIntent(c, num));
         //spm.updateToRevival();
     }
 
