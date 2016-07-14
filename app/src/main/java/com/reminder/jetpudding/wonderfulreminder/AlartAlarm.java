@@ -20,7 +20,7 @@ public class AlartAlarm extends Activity{
         dialogBuilder.setMessage("時間になりました");
         dialogBuilder.setPositiveButton("OK",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
-
+                dialog.cancel();
             }
         });
 
