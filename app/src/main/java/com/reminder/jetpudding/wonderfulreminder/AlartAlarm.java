@@ -21,9 +21,9 @@ public class AlartAlarm extends Activity{
 
         AlertDialog.Builder dialogBuilder=new AlertDialog.Builder(this);
         AlertDialog Dialog=dialogBuilder.create();
-        Dialog.show();
         dialogBuilder.setTitle("リマインダー");
         dialogBuilder.setMessage("時間になりました");
+        Dialog.show();
         onStart();
         dialogBuilder.setPositiveButton("OK",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
