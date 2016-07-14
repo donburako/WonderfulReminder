@@ -5,10 +5,25 @@ package com.reminder.jetpudding.wonderfulreminder;
  */
 
 import android.app.*;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 public class AlartAlarm extends Activity{
+    private MediaPlayer mp;
+
+    public void ring(Context context){
+        mp = MediaPlayer.create(context, R.raw.test);
+        mp.start();
+        //アラート通知
+
+    }
+    //アラームストップ
+    private void stopAndRelaese(){
+        mp.stop();
+        mp.release();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
