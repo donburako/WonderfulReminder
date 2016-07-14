@@ -73,7 +73,7 @@ public class MainReminderActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("削除", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                TaskManager.deleteExecute(item); // 削除実行
+                TaskManager.deleteExecute(item, getApplicationContext()); // 削除実行
 
                 //更新のため再度Mainを表示
                 Intent i = new Intent(MainReminderActivity.this, MainReminderActivity.class);
