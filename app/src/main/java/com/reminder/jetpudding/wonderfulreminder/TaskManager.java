@@ -34,8 +34,6 @@ public class TaskManager{
     // AlarmManager関係
     private static final String TAG = TaskManager.class.getSimpleName();
     private static Alarm alarm;
-    private static PendingIntent mAlarmSender;
-    private static AlarmManager am;
 
 
     /*---[ SETTER ]---*/
@@ -48,8 +46,6 @@ public class TaskManager{
     public static void setAdAct(AddActivity ad){ adAct = ad; }
     public static void setEdiAct(EditActivity ed){ ediAct = ed; }
     public static void setContext(Context c){ context = c; }
-    public static void setmAlarmSender(PendingIntent pi){ mAlarmSender = pi; }
-    public static void setAm(AlarmManager a){ am = a; }
     public static void setAlarm(Alarm a){ alarm = a; }
 
 
@@ -62,8 +58,6 @@ public class TaskManager{
     public static boolean getIsInit(){ return isInit; }
     public static List<Task> getTaskList(){ return taskList; }
     public static int getTaskListSize(){ return taskList.size(); }
-    public static PendingIntent getmAlarmSender(){ return mAlarmSender; }
-    public static AlarmManager getAm(){ return am; }
     public static Alarm getAlarm(){ return alarm; }
 
 

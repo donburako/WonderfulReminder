@@ -55,10 +55,10 @@ public class Alarm{
         //spm.updateToRevival();
     }
 
-    private PendingIntent getPendingIntent(Context context) {
+    private PendingIntent getPendingIntent(Context context, int num) {
         // アラーム時に起動するアプリケーションを登録
         Intent intent = new Intent(context, MyAlarmService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, PendingIntent.FLAG_ONE_SHOT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getService(context, num, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pendingIntent;
     }
 }
