@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".AddActivity" />
         <activity android:name=".EditActivity"></activity>
+        <activity android:name=".AlartAlarm"></activity>
     </application>
 
 </manifest>
