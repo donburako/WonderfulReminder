@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.reminder.jetpudding.wonderfulreminder">
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +20,12 @@
         <activity android:name=".AddActivity" />
         <activity android:name=".EditActivity"></activity>
         <activity android:name=".AlartAlarm"></activity>
+        <service android:name="MyAlarmService"></service>
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="MyAlarmAction"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

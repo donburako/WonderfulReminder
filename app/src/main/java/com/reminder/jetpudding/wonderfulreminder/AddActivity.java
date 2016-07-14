@@ -55,7 +55,7 @@ public class AddActivity extends AppCompatActivity {
         //makeDialog("AddTask", "Task: num="+task.getNumber()+" name="+taskName+" detail="+detail+" time="+endTime.getYear()+"/"+endTime.getMonth()+"/"+endTime.getDayOfMonth());
 
         // TaskAdd
-        TaskManager.addExecute(task, this.getApplicationContext());
+        TaskManager.addExecute(task,getApplicationContext());
 
         // Main画面に戻ろう
         Intent intent = new Intent(AddActivity.this, MainReminderActivity.class);
