@@ -1,4 +1,6 @@
 package com.reminder.jetpudding.wonderfulreminder;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -30,7 +32,7 @@ public class TaskManager{
 
     /*---[ SETTER ]---*/
     public static void setTaskList(List<Task> tl){ taskList = (ArrayList<Task>) tl; }
-    public static void setAlarm(Alarm al){ alarm = al;alarm.ring(context);}
+    public static void setAlarm(Alarm al){ alarm = al;al.ring(context);}
     public static void setAddtask(AddTask at){ addtask = at; }
     public static void setEdittask(EditTask et){ edittask = et; }
     public static void setDeletetask(DeleteTask dt){ deletetask = dt; }
@@ -50,15 +52,92 @@ public class TaskManager{
     public static List<Task> getTaskList(){ return taskList; }
     // taskの数
     public static int getTaskListSize(){ return taskList.size(); }
+    //alarm
+    public static Alarm getAlarm(){return alarm;}
 
 
     /*---[ FUNCTION ]---*/
     // TaskListにアラーム鳴らすやつがあるかチェック
     // *****[未修整]******
 
-    public static void checkAlarm(){
-        Date currentDate;
+    Context c;
+    AlarmManager am;
+    private PendingIntent mAlarmSender;
 
+    private static final String TAG = TaskManager.class.getSimpleName();
+
+    public TaskManager(Context c){
+        // 初期化
+        this.c = c;
+        am = (AlarmManager)c.getSystemService(Context.ALARM_SERVICE);
+    }
+
+    public void addAlarm(int alarmHour, int alarmMinute){
+        // アラームを設定する
+        mAlarmSender = this.getPendingIntent();
+
+        // アラーム時間設定
+
+        Calendar cal = Calendar.getInstance();
+        //cal.setTimeInMillis(System.currentTimeMillis());
+
+        // 設定した時刻をカレンダーに設定
+        for(Task t:taskList) {//これでtaskList全部回せる
+            //カレンダー変数への変換
+            cal.setTime(t.getEndTime());
+
+            cal.set(cal.YEAR,current.MONTH,current.DATE,current.HOUR,current.MINUTE);
+
+            //時刻になったらring()で音鳴らす
+                setAlarm(alarm);
+            }
+        cal.set(Calendar.HOUR_OF_DAY, alarmHour);
+        cal.set(Calendar.MINUTE, alarmMinute);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        // 過去だったら明日にする
+        if(cal.getTimeInMillis() < System.currentTimeMillis()){
+            cal.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        Toast.makeText(c, String.format("%02d時%02d分に起こします", alarmHour, alarmMinute), Toast.LENGTH_LONG).show();
+
+        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), mAlarmSender);
+        Log.v(TAG, cal.getTimeInMillis()+"ms");
+        Log.v(TAG, "アラームセット完了");
+    }
+
+    public void stopAlarm() {
+        // アラームのキャンセル
+        Log.d(TAG, "stopAlarm()");
+        am.cancel(mAlarmSender);
+        spm.updateToRevival();
+    }
+
+    private PendingIntent getPendingIntent() {
+        // アラーム時に起動するアプリケーションを登録
+        Intent intent = new Intent(c, MyAlarmService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(c, PendingIntent.FLAG_ONE_SHOT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return pendingIntent;
+    }
+
+    public static void checkAlarm(){
+        //現在の時間取得
+        Date date = new Date();
+        Calendar current = Calendar.getInstance();
+        //Date型からカレンダー型に変換
+        current.setTime(date);
+        //current.set(current.YEAR,current.MONTH,current.DATE,current.HOUR,current.MINUTE);
+
+        //matchtime()メソッドで現在の時刻と設定時刻を比べる
+
+        for(Task t:taskList) {//これでtaskList全部回せる
+            if (alarm.matchtime(t.getEndTime(), current)) {
+                //時刻になったらring()で音鳴らす
+                setAlarm(alarm);
+            }
+        }
+        //Task.getAllTasks(db).endtime;
     }
 
     // ********************
@@ -90,10 +169,10 @@ public class TaskManager{
     */
 
     //初期化
-    public void init(Context context){
+    public void init(Context context) {
         TaskManager.setContext(context);
 
-        TaskDB db=new TaskDB(context);
+        TaskDB db = new TaskDB(context);
 
         // static spaceの方のTaskManagerにインスタンスを送る
         TaskManager.setTaskList(Task.getAllTasks(db));
@@ -102,7 +181,10 @@ public class TaskManager{
         TaskManager.setEdittask(new EditTask(db));
 
         // Alarm
-        TaskManager.setAlarm(new Alarm());
-    }
+        //TaskManager.setAlarm(new Alarm());
 
-}
+        //Alarm確かめっぱなし
+
+
+        }
+    }

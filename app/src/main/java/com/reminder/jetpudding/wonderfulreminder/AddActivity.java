@@ -1,5 +1,7 @@
 package com.reminder.jetpudding.wonderfulreminder;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,11 +29,13 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     public void toOK(View view){
         // 入力値の取得
         EditText taskNameText=(EditText)findViewById(R.id.taskname);
         EditText detailText=(EditText)findViewById(R.id.detail);
-        DatePicker endTime=(DatePicker)findViewById(R.id.datePicker1);
+        DatePicker endDay=(DatePicker)findViewById(R.id.datePicker1);
+        TimePicker endTime=(TimePicker)findViewById(R.id.timePicker1);
 
         // タスク名取得
         String taskName=taskNameText.getText().toString();
@@ -40,7 +44,9 @@ public class AddActivity extends AppCompatActivity {
 
         // 時間を取得→Calendarで指定
         Calendar endCal = Calendar.getInstance();
-        endCal.set(endTime.getYear(), endTime.getMonth(), endTime.getDayOfMonth());
+        endCal.set(endDay.getYear(), endDay.getMonth(), endDay.getDayOfMonth(),endTime.getHour(),endTime.getMinute());
+
+        makeDialog("calender",endCal.toString());
 
         // Task作成
         Task task= new Task(-1,taskName,endCal.getTime(),detail); //初期-1

@@ -1,63 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-    android:text="終了時刻"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView3"
-    android:textSize="20sp"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/taskname"/>
+        android:text="終了時刻"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textSize="20sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/taskname"/>
 
-<Button
-    android:text="決定"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="40dp"
-    android:id="@+id/OkButton"
-    android:onClick="toOK" />
+    <Button
+        android:text="決定"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/OkButton"
+        android:onClick="toOK"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-<TextView
-    android:text="@string/textview_addtask"
-    android:textSize="24dp"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:id="@+id/textView7"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="18dp"
-    />
+    <TextView
+        android:text="@string/textview_addtask"
+        android:textSize="24dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp"
+        />
 
-<TextView
-    android:text="タスク名"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textview_taskname"
-    android:textSize="20sp"
-    android:layout_marginTop="19dp"
-    android:layout_below="@+id/textView7"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
+    <TextView
+        android:text="タスク名"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_taskname"
+        android:textSize="20sp"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-<EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:id="@+id/taskname"
-    android:hint="タスク名を入力"
-    android:singleLine="true"
-    android:inputType="textMultiLine"
-    android:layout_alignBaseline="@+id/textview_taskname"
-    android:layout_alignBottom="@+id/textview_taskname"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/taskname"
+        android:hint="タスク名を入力"
+        android:singleLine="true"
+        android:inputType="textMultiLine"
+        android:layout_alignBaseline="@+id/textview_taskname"
+        android:layout_alignBottom="@+id/textview_taskname"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="詳細"
@@ -65,21 +64,9 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:id="@+id/textView6"
         android:textSize="20sp"
-        android:layout_below="@+id/textView2"
+        android:layout_above="@+id/detail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <EditText
-    android:layout_width="wrap_content"
-        android:inputType="textMultiLine"
-    android:ems="10"
-    android:id="@+id/detail"
-    android:hint="詳細を入力"
-    android:singleLine="true"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_height="50sp" />
 
 
     <Spinner
@@ -87,9 +74,10 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:entries="@array/snoozelist"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/OkButton"
+        android:layout_toRightOf="@+id/OkButton"
+        android:layout_toEndOf="@+id/OkButton" />
+
 
     <DatePicker
         android:id="@+id/datePicker1"
@@ -98,20 +86,43 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:calendarViewShown="false"
         android:spinnersShown="true"
         android:datePickerMode="spinner"
-        android:layout_below="@+id/taskname"
-        android:layout_toRightOf="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7" />
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:spinnersShown="true"
+        android:timePickerMode="spinner"
+        android:layout_below="@+id/textView3"
+        android:layout_toRightOf="@+id/OkButton"
+        android:layout_toEndOf="@+id/OkButton" />
 
     <TextView
         android:text="スヌーズ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/textView8"
         android:textSize="18sp"
-        android:layout_below="@+id/datePicker1"
+        android:layout_alignBaseline="@+id/spinner"
+        android:layout_alignBottom="@+id/spinner"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp" />
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/detail"
+        android:hint="詳細を入力"
+        android:singleLine="true"
+        android:layout_height="50sp"
+        android:layout_above="@+id/textView8"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
 
 
 </RelativeLayout>
