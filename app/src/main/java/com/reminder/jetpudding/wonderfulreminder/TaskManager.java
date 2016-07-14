@@ -18,7 +18,9 @@ public class TaskManager{
     // ることにすればよいかと //
     ////////////////////////////
 
+
     /*---[ PARAMETER ]---*/
+
     private static List<Task> taskList;
     private static AddTask addtask;
     private static DeleteTask deletetask;
@@ -31,10 +33,13 @@ public class TaskManager{
 
     // AlarmManager関係
     private static final String TAG = TaskManager.class.getSimpleName();
+    private static Alarm alarm;
     private static PendingIntent mAlarmSender;
     private static AlarmManager am;
 
+
     /*---[ SETTER ]---*/
+
     public static void setTaskList(List<Task> tl){ taskList = (ArrayList<Task>) tl; }
     public static void setAddtask(AddTask at){ addtask = at; }
     public static void setEdittask(EditTask et){ edittask = et; }
@@ -45,94 +50,24 @@ public class TaskManager{
     public static void setContext(Context c){ context = c; }
     public static void setmAlarmSender(PendingIntent pi){ mAlarmSender = pi; }
     public static void setAm(AlarmManager a){ am = a; }
+    public static void setAlarm(Alarm a){ alarm = a; }
+
 
     /*---[ GETTER ]---*/
+
     // Activity
     public static MainReminderActivity getMrAct(){ return mrAct; }
     public static AddActivity getAdAct(){ return adAct; }
     public static EditActivity getEdiAct(){ return ediAct; }
-    // isInit
     public static boolean getIsInit(){ return isInit; }
-    // taskList
     public static List<Task> getTaskList(){ return taskList; }
-    // taskの数
     public static int getTaskListSize(){ return taskList.size(); }
-    //alarm
     public static PendingIntent getmAlarmSender(){ return mAlarmSender; }
     public static AlarmManager getAm(){ return am; }
+    public static Alarm getAlarm(){ return alarm; }
 
 
     /*---[ FUNCTION ]---*/
-
-    public void addAlarm(int alarmHour, int alarmMinute){
-        // アラームを設定する
-        mAlarmSender = this.getPendingIntent();
-
-        // アラーム時間設定
-
-        Calendar cal = Calendar.getInstance();
-        //cal.setTimeInMillis(System.currentTimeMillis());
-
-        // 設定した時刻をカレンダーに設定
-        for(Task t:taskList) {//これでtaskList全部回せる
-            //カレンダー変数への変換
-            cal.setTime(t.getEndTime());
-
-            cal.set(cal.YEAR,current.MONTH,current.DATE,current.HOUR,current.MINUTE);
-
-            //時刻になったらring()で音鳴らす
-                setAlarm(alarm);
-            }
-        cal.set(Calendar.HOUR_OF_DAY, alarmHour);
-        cal.set(Calendar.MINUTE, alarmMinute);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-
-        // 過去だったら明日にする
-        if(cal.getTimeInMillis() < System.currentTimeMillis()){
-            cal.add(Calendar.DAY_OF_YEAR, 1);
-        }
-        Toast.makeText(c, String.format("%02d時%02d分に起こします", alarmHour, alarmMinute), Toast.LENGTH_LONG).show();
-
-        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), mAlarmSender);
-        Log.v(TAG, cal.getTimeInMillis()+"ms");
-        Log.v(TAG, "アラームセット完了");
-    }
-
-    public void stopAlarm() {
-        // アラームのキャンセル
-        Log.d(TAG, "stopAlarm()");
-        am.cancel(mAlarmSender);
-        spm.updateToRevival();
-    }
-
-    private PendingIntent getPendingIntent() {
-        // アラーム時に起動するアプリケーションを登録
-        Intent intent = new Intent(c, MyAlarmService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(c, PendingIntent.FLAG_ONE_SHOT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return pendingIntent;
-    }
-
-    public static void checkAlarm(){
-        //現在の時間取得
-        Date date = new Date();
-        Calendar current = Calendar.getInstance();
-        //Date型からカレンダー型に変換
-        current.setTime(date);
-        //current.set(current.YEAR,current.MONTH,current.DATE,current.HOUR,current.MINUTE);
-
-        //matchtime()メソッドで現在の時刻と設定時刻を比べる
-
-        for(Task t:taskList) {//これでtaskList全部回せる
-            if (alarm.matchtime(t.getEndTime(), current)) {
-                //時刻になったらring()で音鳴らす
-                setAlarm(alarm);
-            }
-        }
-        //Task.getAllTasks(db).endtime;
-    }
-
-    // ********************
 
     public static void addExecute(Task task){ taskList.add(addtask.execute(task)); }
     public static void deleteExecute(Task task){ if(deletetask.execute(task))
@@ -164,6 +99,7 @@ public class TaskManager{
         TaskManager.setEdittask(new EditTask(db));
 
         // Alarm
+        TaskManager.setAlarm(new Alarm());
         TaskManager.setAm((AlarmManager)context.getSystemService(Context.ALARM_SERVICE));
 
         }
