@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView android:id="@+id/textview_alartalarm_taskname"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""
+        android:textColor="@color/colorTaskName"
+        android:textSize="30dp"
+        android:layout_marginTop="75dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView android:id="@+id/textview_alartalarm_taskdetaillabel"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/textview_detail"
+        android:textColor="@color/colorAccent"
+        android:textSize="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView android:id="@+id/textview_alartalarm_tasknamelabel"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/textview_taskname"
+        android:textColor="@color/colorAccent"
+        android:textSize="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView android:id="@+id/textview_alartalarm_taskdetail"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""
+        android:textColor="@color/colorTaskName"
+        android:textSize="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="STOP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_mpstop"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="34dp"
+        android:onClick= "stopClick"/>
+
+</RelativeLayout>

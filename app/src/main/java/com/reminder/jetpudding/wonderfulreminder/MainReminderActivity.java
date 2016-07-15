@@ -26,10 +26,9 @@ public class MainReminderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_reminder); // 描画するレイアウトの指定(画面に表示する命令ではないことに注意)
 
         //if(!TaskManager.getIsInit()) {
-            TaskManager.initOk();
+            //TaskManager.initOk();
             new TaskManager().init(getApplicationContext()); // taskManagerの初期化
             TaskManager.setMrAct(this); // taskManagerと連結
-            //makeDialog("DEBUG", "throw TaskManager.init()");//"nowId = "+TaskManager.getNowId()); //debug でもやるたび1上がっちゃう
         //}
 
         List<Task> taskList = TaskManager.getTaskList();
@@ -73,7 +72,7 @@ public class MainReminderActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("削除", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                TaskManager.deleteExecute(item, getApplicationContext()); // 削除実行
+                TaskManager.deleteExecute(item.getNumber(), getApplicationContext()); // 削除実行
 
                 //更新のため再度Mainを表示
                 Intent i = new Intent(MainReminderActivity.this, MainReminderActivity.class);

@@ -59,13 +59,19 @@ public class TaskManager{
     /*---[ FUNCTION ]---*/
 
     public static void addExecute(Task task, Context c){ taskList.add(addtask.execute(task)); alarm.addAlarm(task,c);}
-    public static void deleteExecute(Task task, Context c){
-        if(deletetask.execute(task)){ taskList.remove(task); alarm.stopAlarm(c, task.getNumber()); }
+    public static void deleteExecute(int num, Context c){
+        if(deletetask.execute(num)){ removeTaskById(taskList,num); alarm.stopAlarm(c, num); }
     }
     public static void editExecute(Task before, Task after)
         { if(edittask.execute(before,after))taskList.set(taskList.indexOf(before), after); }
 
     public static void initOk(){ isInit = true; }
+
+    // deleteをnumのみでやることにしたので、intでもlistから削除できるようにメソッドづくり
+    private static boolean removeTaskById(List<Task> taskList, int num){
+        for(Task t:taskList) if(t.getNumber()==num){ taskList.remove(t); return true; }
+        return false;
+    }
 
 
 
