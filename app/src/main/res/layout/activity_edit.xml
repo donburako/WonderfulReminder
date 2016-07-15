@@ -80,16 +80,6 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <DatePicker
-        android:id="@+id/datePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="false"
-        android:spinnersShown="true"
-        android:datePickerMode="spinner"
-        android:layout_below="@+id/detail"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
     <TextView
         android:text="スヌーズ"
         android:layout_width="wrap_content"
@@ -108,5 +98,27 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:layout_alignTop="@+id/textView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:spinnersShown="true"
+        android:timePickerMode="spinner"
+        android:layout_alignTop="@+id/datePicker1"
+        android:layout_alignLeft="@+id/changeButton"
+        android:layout_alignStart="@+id/changeButton" />
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:spinnersShown="true"
+        android:datePickerMode="spinner"
+        android:layout_below="@+id/textView4"
+        android:layout_toLeftOf="@+id/timePicker1"
+        android:layout_toStartOf="@+id/timePicker1" />
 
 </RelativeLayout>
