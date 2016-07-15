@@ -43,6 +43,9 @@ public class Alarm{
     private PendingIntent getPendingIntent(Context context, int num) {
         // アラーム時に起動するアプリケーションを登録
         Intent intent = new Intent(context, MyAlarmService.class);
+        intent.putExtra("TASK_NUM", num);
+        // debug
+        int debugnum = intent.getIntExtra("TASK_NUM", -5);
         PendingIntent pendingIntent = PendingIntent.getService(context, num, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pendingIntent;
     }

@@ -20,40 +20,20 @@ public class DeleteTask {
     public DeleteTask(TaskDB taskdb){ this.taskdb = taskdb; }
 
     // TaskManagerからの呼び出し
-    public boolean execute(Task task){
-        return delete(task);
+    public boolean execute(int num){
+        return delete(num);
     }
 
     // Taskの削除
-    private boolean delete(Task task){
-        // ---[手順]---
-        // 1. taskdbからdbを開く
-        // 2. TaskをByteに変換 [7/13]現在不使用
-        // 3. dbからデリート
-        // 4. dbをclose
-        // ------------
+    private boolean delete(int num){
+        // -5が来た場合(Alarm鳴ってそれを削除する時にうまくいかなかった時)
+        if(num==-5) throw new SQLException("Alarm is OK. But this Task cannot delete.");
 
-        // 1. taskdbからdbを開く
+        // taskdbからdbを開く
         db = taskdb.getWritableDatabase();
 
-        // 2. TaskをByteに変換
-        /* [7/13]現在不使用
-        byte[] taskByte = null;
-        try{
-            ByteArrayOutputStream byteos = new ByteArrayOutputStream();
-            ObjectOutputStream objos = new ObjectOutputStream(byteos);
-            objos.writeObject(task);
-            objos.close(); byteos.close();
-            taskByte = byteos.toByteArray();
-        }catch(java.io.IOException e){
-            e.printStackTrace();
-        }
-        */
-
-        // 3. dbからデリート
-        int debugnum = task.getNumber();
-        String debugnumS = String.valueOf(task.getNumber());
-        long result = db.delete(TABLE_NAME, "ID = ?", new String[]{ String.valueOf(task.getNumber()) });
+        // dbからデリート
+        long result = db.delete(TABLE_NAME, "ID = ?", new String[]{ String.valueOf(num) });
 
         // 失敗した場合
         if(result == -1) throw new SQLException("Failed to delete row");
@@ -66,4 +46,5 @@ public class DeleteTask {
 
         return result != -1;
     }
+
 }
